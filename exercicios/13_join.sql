@@ -25,11 +25,14 @@ tb_dia_cliente AS (
     GROUP BY t1.idCliente, dtdia
     ORDER BY t1.idCliente, dtdia
 ),
+tb_rn AS (
 
-max_inter AS (
-    SELECT  idCliente,
-            max(qtinteracoes) as maxinter
+SELECT *,
+        row_number() OVER (PARTITION BY idCliente ORDER BY qtinteracoes DESC, dtdia) AS rn
 
-    FROM tb_dia_cliente
-    GROUP BY idCliente
+FROM tb_dia_cliente
 )
+
+SELECT * 
+FROM tb_rn
+WHERE rn = 1

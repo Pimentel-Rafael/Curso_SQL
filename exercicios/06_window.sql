@@ -1,0 +1,1 @@
+--Quantidade de usuarios cadastrados (absoluto e acumulado) ao longo do tempo?
